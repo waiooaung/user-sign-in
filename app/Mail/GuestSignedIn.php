@@ -29,11 +29,21 @@ class GuestSignedIn extends Mailable
      */
      public function build()
     {
-        return $this->subject('Signed In')
+        $email = $this->subject('Signed In')
             ->view('emails.user_signed_in')
             ->with([
                 'data' => $this->data,
                 'dateTime' => $this->dateTime
             ]);
+
+        if (!empty($this->data->photo)) {
+            $photoPath = storage_path('app/public/' . $this->data->photo);
+            $email->attach($photoPath, [
+                'as' => 'photo.png',
+                'mime' => 'image/png',
+            ]);
+        }
+
+        return $email;
     }
 }

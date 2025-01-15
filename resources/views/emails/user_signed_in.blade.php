@@ -21,6 +21,9 @@
     @if(isset($data['photo']))
         <p><strong>Photo:</strong> <a href="{{ asset('storage/' . $data['photo']) }}" class="blink" target="_blank">Click here to view the photo</a></p>
     @endif
+    @if(!empty($data->photo))
+        <p><strong>Photo:</strong> Attached</p>
+    @endif
 </body>
 </html>
 
