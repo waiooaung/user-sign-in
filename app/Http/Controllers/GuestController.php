@@ -38,7 +38,7 @@ class GuestController extends Controller
             $data->save();
 
             $dateTime = $data->created_at->toDateTimeString();
-            Mail::to(env('MAIL_RECEIVER', 'waiooaung.dev@gmail.com'))->send(new GuestSignedIn($data, $dateTime));
+            Mail::to(env('MAIL_RECEIVER', 'waiooaung.dev@gmail.com'))->queue(new GuestSignedIn($data, $dateTime));
 
             session()->flash('message', 'You have successfully signed in!');
             session()->flash('message_type', 'success');

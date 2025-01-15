@@ -13,6 +13,9 @@ class GuestSignedIn extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $data;
+    private $dateTime;
+
     /**
      * Create a new message instance.
      */
